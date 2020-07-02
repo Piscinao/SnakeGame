@@ -11,6 +11,14 @@ snake[0] = {
 
 let direction = "right";
 
+// Math floor retira a parte flutuante do random, já o random retorna sempre um
+// número aleatória até 1 , gera número aleatório tirando "," depois do número
+// seta o tamanho do canvas pra ele não ultrapaçar a área do game
+let food = {
+  x: Math.floor(Math.random() * 15 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 
 function createBG(){
   // Define a cor
@@ -25,6 +33,11 @@ function createSnake(){
     context.fillStyle = "green";
     context.fillRect(snake[i].x, snake[i].y, box, box);
   }
+}
+
+function drawFood(){
+  context.fillStyle = "red";
+  context.fillRect(food.x, food.y, box, box);
 }
 
 // Event Listener chama a update conforme a tecla apertada e passa como argumento o evento de tecla que
@@ -53,6 +66,7 @@ function startGame(){
  
   createBG();
   createSnake();
+  drawFood();
 
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
